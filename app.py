@@ -6,7 +6,7 @@ def main():
     args = parse_arguments()
     print_header(args.day, args.part, args.test)
     problem = days[args.day - 1]()
-    input_file = f'inputs/{args.day}/{args.part}' + ('_TEST' if not args.test else '')
+    input_file = f'inputs/{args.day}/{args.part}' + ('_TEST' if args.test else '')
     with open(input_file, 'r') as file_contents:
         if args.part.lower() == 'a':
             solution = problem.PartA(file_contents.readlines())
@@ -25,8 +25,7 @@ def print_header(day, part, test):
     print(f'''{'#' * 30}
 # Advent of Code 2024
 # Day {day} / Part {part.upper()}
-# Test Mode: {test}
-{'#' * 30}''')
+# Test Mode: {test}''')
 
 def print_footer(solution):
     print(f'''{"#" * 30}

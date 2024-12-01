@@ -3,7 +3,7 @@ class Problem:
         pass
 
     def PartA(self):
-        print(f'# {" " * 10}PART A{" " * 11}#')
+        pass
 
     def PartB(self):
-        print(f'# {" " * 10}PART B{" " * 11}#')
+        pass
