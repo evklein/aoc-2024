@@ -9,4 +9,4 @@ for filename in os.listdir(os.path.dirname(__file__)):
         exec(f'from .{module_name} import {module_name.capitalize()}')
         if module_name.startswith('day'):
             days.append(eval(module_name.capitalize()))
-days.reverse()
+# days.reverse() # For MacOS

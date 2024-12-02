@@ -11,12 +11,10 @@ class Day1(Problem):
         return left, right
 
     def PartA(self, input):
-        super().PartA()
         left, right = self.day1_parse(input)
         left, right = sorted(left), sorted(right)
         return sum(abs(l - r) for l, r in zip(left, right))
 
     def PartB(self, input):
-        super().PartB()
         left, right = self.day1_parse(input)
         return sum(l * right.count(l) for l in left)
