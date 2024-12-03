@@ -1,6 +1,6 @@
 import argparse
 from problem_sets import *
-import datetime
+import time
 
 def main():
     args = parse_arguments()
@@ -9,10 +9,14 @@ def main():
     input_file = f'inputs/{args.day}/{args.part}' + ('_TEST' if args.test else '')
     with open(input_file, 'r') as file_contents:
         if args.part.lower() == 'a':
+            start_time = time.perf_counter()
             solution = problem.PartA(file_contents.read() if args.raw else file_contents.readlines())
         elif args.part.lower() == 'b':
+            start_time = time.perf_counter()
             solution = problem.PartB(file_contents.read() if args.raw else file_contents.readlines())
-    print_footer(solution)
+    end_time = time.perf_counter()
+    elapsed_time_raw = end_time - start_time
+    print_footer(solution, elapsed_time_raw)
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description = 'Advent of Code 2024')
@@ -29,8 +33,10 @@ def print_header(day, part, test, raw):
 # Test Mode: {test}
 # Input Mode (Rawness): {raw}''')
 
-def print_footer(solution):
-    print(f'''{"#" * 30}
+def print_footer(solution, elapsed_time_raw):
+    print(f'''{'#' * 30}
+# Time: {elapsed_time_raw * 1000:.1f}ms
+{'-' * 30}
 # Solution: {solution}
 {'#' * 30}
 ''')

@@ -8,20 +8,21 @@ class Day3(Problem):
 
     def PartB(self, input):
         operations = re.finditer(r'mul\(\d+,\d+\)', input)
-        multipliers_dict = {
+        multipliers_dict = { # New Dictionary: k = index of op in input, v = parsed mutliplicand and multiplier
             match.start(): list(map(int, re.findall(r'\d+', match.group())))
             for match in operations
         }
         do_indices = [match.start() for match in re.finditer(r'do\(\)', input)]
         do_not_indices = [match.start() for match in re.finditer(r'don\'t\(\)', input)]
 
+        # Work backwards, finding most recent do (or don't) statements and confirming the operation if the former is true.
         solution = 0
         for original_index, (x, y) in multipliers_dict.items():
             do = True
             for i in range(original_index, 0, -1): # Search for last do or don't
                 if i in do_indices:
                     break
-                if i in do_not_indices:
+                elif i in do_not_indices:
                     do = False
                     break
             if do:
