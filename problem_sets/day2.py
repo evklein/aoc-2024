@@ -4,6 +4,7 @@ from collections import namedtuple
 
 RecordResult = namedtuple('RecordResult', ['safe', 'diffs'])
 
+# Do not run raw
 class Day2(Problem):
 
     def PartA(self, input):

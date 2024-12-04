@@ -1,5 +1,6 @@
 from .problem import Problem
 
+# Do not run raw
 class Day1(Problem):
     def day1_parse(self, input):
         num_elements = len(input)

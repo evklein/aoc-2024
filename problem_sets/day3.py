@@ -1,6 +1,7 @@
 from .problem import Problem
 import re
 
+# Run raw
 class Day3(Problem):
     def PartA(self, input):
         operations = re.findall(r'mul\(\d+,\d+\)', input)
@@ -12,6 +13,7 @@ class Day3(Problem):
             match.start(): list(map(int, re.findall(r'\d+', match.group())))
             for match in operations
         }
+        
         do_indices = [match.start() for match in re.finditer(r'do\(\)', input)]
         do_not_indices = [match.start() for match in re.finditer(r'don\'t\(\)', input)]
 
