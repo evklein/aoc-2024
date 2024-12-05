@@ -8,7 +8,10 @@ def main():
     if args.runall:
         total_time_ms = 0
         raw_input_days = [2, 3]
-        for i in range(0, 4):
+        print('=' * 42)
+        print('| Day | Part | Time (ms) |   Solution    |')
+        for i in range(0, 5):
+            print('-' * 42)
             start_time_a = time.perf_counter()
             problem = days[i]()
             ### Part A
@@ -16,13 +19,13 @@ def main():
             sol_a = problem.PartA(open(f'inputs/{i + 1}/a').read() if i in raw_input_days else open(f'inputs/{i + 1}/a').readlines())
             end_time_a = time.perf_counter()
             total_time_ms += end_time_a - start_time_a
-            print(f'Day {i} Part A: {(end_time_a - start_time_a) * 1000:.1f}ms, Solution: {sol_a}')
+            print(f'|  {i + 1}  |  A   | {(end_time_a - start_time_a) * 1000:.1f}       | {sol_a}        |')
             ### Part B
             start_time_b = time.perf_counter()
             sol_b = problem.PartB(open(f'inputs/{i + 1}/b').read() if i in raw_input_days else open(f'inputs/{i + 1}/b').readlines())
             end_time_b = time.perf_counter()
             total_time_ms += end_time_b - start_time_b
-            print(f'Day {i} Part B: {(end_time_b - start_time_b) * 1000:.1f}ms, Solution: {sol_b}')
+            print(f'|  {i + 1}  |  B   | {(end_time_b - start_time_b) * 1000:.1f}       | {sol_b}        |')
         print(f'Total time: {total_time_ms * 1000:.1f}ms')
         return
 
