@@ -1,5 +1,4 @@
 from .problem import Problem
-from collections import deque
 
 # Do not run raw
 class Day5(Problem):
@@ -35,7 +34,7 @@ class Day5(Problem):
         rules, updates = self.parse_input(input)
         problem_updates = [update for update in updates if update not in self.get_acceptable_updates(rules, updates)]
         fixed_updates = []
-        for i, update in enumerate(problem_updates):
+        for update in problem_updates:
             stack = []
             for j, page_update in enumerate(update):
                 relevant_rules = rules.get(page_update, [])
