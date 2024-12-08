@@ -37,7 +37,6 @@ class Day7(Problem):
         operations = [Operation(int(x), list(map(int, y.split()))) for x, y in [line.split(':') for line in input.splitlines()]]
         # Create map of all possible operations using binary math
 
-        print('hm')
         operator_combinations = []
         for operation in operations:
             combinations = 3 ** (len(operation.values) - 1)
@@ -48,7 +47,6 @@ class Day7(Problem):
                     .replace('2', '|') \
                 for i in range(combinations)
             ])
-        print('hm2')
         
         solution = 0
         for i, operation in enumerate(operations):
@@ -61,8 +59,6 @@ class Day7(Problem):
                     else:
                         val = eval(f'{val}{operator}{operation.values[j + 1]}')
                 if val == operation.final:
-                    print('Testing operation', operation, 'with combination', combination, 'yields', val)
-
                     solution += operation.final
                     break
         return solution
