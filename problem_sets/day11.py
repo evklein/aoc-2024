@@ -1,19 +1,30 @@
 from .problem import Problem
 from collections import namedtuple
 
+from functools import cache
+from math import floor, log10
+
 PART_A_LIMIT = 25
 PART_B_LIMIT = 75
-
 # Run raw
 class Day11(Problem):
     def __init__(self):
         self.stones_memo = [{} for _ in range(max(PART_A_LIMIT, PART_B_LIMIT))]
 
+    @cache
+    def count(self, x, d=75):
+        if d == 0: return 1
+        if x == 0: return self.count(1, d-1)
+
+        l = floor(log10(x))+1
+        if l % 2: return self.count(x*2024, d-1)
+
+        return (self.count(x // 10**(l//2), d-1)+
+                self.count(x %  10**(l//2), d-1))
+
     def PartA(self, input):
-        stones = list(map(int, input.split()))
-        for i in range(PART_A_LIMIT):
-            stones = self.blink_a(stones)
-        return len(stones)
+        stones = map(int, input.split())
+        return sum(map(self.count, stones))
 
     def blink_a(self, stones):
         new_stones = []
@@ -25,7 +36,7 @@ class Day11(Problem):
                 new_stones.extend(list(map(int,(
                     str(stone)[:len(str(stone)) // 2],
                     str(stone)[len(str(stone)) // 2:],
-                    ))))
+                ))))
             else:
                 new_stones.append(stone * 2024)
         return new_stones
