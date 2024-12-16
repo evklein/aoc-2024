@@ -32,6 +32,7 @@ def main():
     print_header(args.day, args.part, args.test, args.raw)
     problem = days[args.day - 1]()
     input_file = f'inputs/{args.day}/{args.part}' + ('_TEST' if args.test else '')
+
     with open(input_file, 'r') as file_contents:
         if args.part.lower() == 'a':
             start_time = time.perf_counter()
